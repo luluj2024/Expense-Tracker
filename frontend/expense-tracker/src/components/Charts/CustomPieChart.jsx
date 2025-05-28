@@ -32,7 +32,7 @@ const CustomPieChart = ({data, label, totalAmount, colors, showTextAnchor}) => {
             <Legend content ={<CustomLegend />} />
 
             {showTextAnchor && (
-                <>
+                <g>
                     <text
                         x="50%"
                         y="50%"
@@ -55,7 +55,7 @@ const CustomPieChart = ({data, label, totalAmount, colors, showTextAnchor}) => {
                     >
                         {totalAmount}
                     </text>
-                </>
+                </g>
             )}
         </PieChart>
     </ResponsiveContainer>;

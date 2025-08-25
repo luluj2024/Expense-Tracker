@@ -22,12 +22,12 @@ const CustomBarChart = ({data}) => {
     const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length){
             return (
-                <div className="bg-white shadow-md rounded-lg p-s border border-gray-300">
-                    <p className="text-xs font-semibold text-purple-800 mb-1">
+                <div style={{backgroundColor: "var(--tooltip-bg)", color: "var(--tooltip-text)", boxShadow: "var(--shadow-md)", borderRadius: "var(--radius-md)", padding: "12px", border: "1px solid var(--border-default)"}}>
+                    <p style={{fontSize: "12px", fontWeight: "600", marginBottom: "4px", color: "var(--tooltip-text)"}}>
                         {payload[0].payload.category}
                     </p>
-                    <p className="text-sm text-gray-600">
-                        Amount: <span className="text-sm font-medium text-gray-900">
+                    <p style={{fontSize: "14px", color: "var(--text-secondary)"}}>
+                        Amount: <span style={{fontSize: "14px", fontWeight: "500", color: "var(--text-primary)"}}>
                             ${payload[0].payload.amount}
                         </span>
                     </p>
@@ -43,8 +43,8 @@ const CustomBarChart = ({data}) => {
                 <BarChart data={data}>
                     <CartesianGrid stroke="none" />
 
-                    <XAxis dataKey="month" tick={{ fontSize: 12, fill: "#555"}} stroke="none" />
-                    <YAxis tick={{ fontSize: 12, fill: "#555"}} stroke="none" />
+                    <XAxis dataKey="month" tick={{ fontSize: 12, fill: "var(--chart-axis)"}} stroke="none" />
+                    <YAxis tick={{ fontSize: 12, fill: "var(--chart-axis)"}} stroke="none" />
 
                     <Tooltip content={CustomTooltip} />
 

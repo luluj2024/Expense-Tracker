@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Ancizar+Sans:ital,wght@0,100..1000;1,100..1000&family=Sixtyfour&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
 @import "tailwindcss";
+@import "./ui/tokens.css";
+@import "./ui/Forms.css";
 
 @theme {
   --font-display: "Sixtyfour", "sans-serif";
@@ -10,12 +12,35 @@
 @layer base {
   html {
     font-family: var(--font-display);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background-color: #fcfbfc;
+    background-color: var(--bg-default);
+    color: var(--text-primary);
     overflow-x: hidden;
+    font-size: 15px;
+    line-height: var(--line-height-relaxed);
   }
+}
+
+/* Modern CSS reset (minimal) */
+* { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+html, body, #root { height: 100%; overflow-x: hidden; }
+h1,h2,h3,h4,h5,h6 { margin: 0; font-weight: var(--font-weight-semibold); color: var(--text-heading, var(--text-primary)); }
+p { margin: 0; }
+img, svg, video, canvas { display: block; max-width: 100%; }
+button { background: none; border: 0; padding: 0; color: inherit; font: inherit; }
+a { color: inherit; text-decoration: none; }
+
+/* Focus visible outline */
+:focus-visible {
+  outline: 2px solid var(--brand-400);
+  outline-offset: 2px;
 }
 
 .input-box {
@@ -27,7 +52,10 @@
 }
 
 .card {
-  @apply bg-white p-6 rounded-2xl shadow-md shadow-gray-100 border border-gray-200/50;
+  @apply p-6 rounded-2xl border;
+  background-color: var(--bg-elevated);
+  border-color: var(--border-default);
+  box-shadow: var(--shadow-sm);
 }
 
 .card-btn {
@@ -40,4 +68,34 @@
 
 .add-btn-fill {
   @apply text-white bg-primary
+}
+
+/* Container using layout tokens */
+.container {
+  box-sizing: border-box;
+  max-width: var(--container-max-width);
+  padding-left: var(--content-gutter);
+  padding-right: var(--content-gutter);
+  margin: 0 auto;
+}
+
+/* Badge styles */
+.badge { 
+  border-radius: 9999px; 
+  padding: 4px 10px; 
+  font-size: 12px; 
+  font-weight: 600;
+  background: var(--pill-bg); 
+  color: var(--pill-text); 
+  border: 1px solid var(--border-default); 
+}
+.badge--pos { 
+  background: var(--pill-pos-bg); 
+  color: var(--pill-pos-text); 
+  border-color: transparent; 
+}
+.badge--neg { 
+  background: var(--pill-neg-bg); 
+  color: var(--pill-neg-text); 
+  border-color: transparent; 
 }

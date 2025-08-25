@@ -1,0 +1,223 @@
+/* Design tokens: light/dark themes using CSS variables */
+:root {
+  /* Font */
+  --font-display: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+
+  /* Gray scale 50–900 */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+
+  /* Brand (indigo 500 base) and Accent (emerald) */
+  --brand-50: #eef2ff;
+  --brand-100: #e0e7ff;
+  --brand-200: #c7d2fe;
+  --brand-300: #a5b4fc;
+  --brand-400: #818cf8;
+  --brand-500: #4f46e5; /* primary */
+  --brand-600: #4338ca;
+  --brand-700: #3730a3;
+  --brand-800: #312e81;
+  --brand-900: #1e1b4b;
+
+  --accent-50: #ecfdf5;
+  --accent-100: #d1fae5;
+  --accent-200: #a7f3d0;
+  --accent-300: #6ee7b7;
+  --accent-400: #34d399;
+  --accent-500: #10b981;
+  --accent-600: #059669;
+  --accent-700: #047857;
+  --accent-800: #065f46;
+  --accent-900: #064e3b;
+
+  /* Semantic statuses */
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  /* Semantic colors */
+  --bg-default: #f8fafc;
+  --bg-elevated: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-default: #e2e8f0;
+  
+  /* Status pills */
+  --pill-bg: #f1f5f9;
+  --pill-text: #0f172a;
+  --pill-pos-bg: #dcfce7;
+  --pill-pos-text: #14532d;
+  --pill-neg-bg: #fee2e2;
+  --pill-neg-text: #7f1d1d;
+  
+  /* Sidebar */
+  --sidebar-bg: #f1f5f9;
+  --sidebar-text: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-item-bg: #ffffff;
+  --sidebar-item-hover: #eef2ff;
+  --sidebar-item-active: #4f46e5;
+  --sidebar-item-active-text: #ffffff;
+  
+  /* Form fields */
+  --field-bg: #ffffff;
+  --field-text: #0f172a;
+  --field-placeholder: #64748b;
+  --field-border: #e2e8f0;
+  --brand-solid: var(--brand-500);
+  --brand-soft: color-mix(in srgb, var(--brand-500) 12%, #ffffff);
+
+  /* Chart palette */
+  --chart-1: #4f46e5;
+  --chart-2: #10b981;
+  --chart-3: #f59e0b;
+  --chart-4: #ef4444;
+  --chart-5: #06b6d4;
+  --chart-6: #8b5cf6;
+  --chart-7: #22c55e;
+  --chart-8: #f43f5e;
+
+  /* Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px; /* cards */
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(2, 6, 23, 0.06);
+  --shadow-md: 0 6px 16px rgba(2, 6, 23, 0.08);
+  --shadow-lg: 0 14px 32px rgba(2, 6, 23, 0.12);
+
+  /* Spacing scale */
+  --space-2: 8px;
+  --space-4: 12px;
+  --space-6: 16px;
+  --space-8: 20px;
+  --space-12: 24px;
+  --space-16: 32px;
+  --space-20: 40px;
+  --space-24: 48px;
+
+  /* Typography */
+  --font-size-h1: 28px;
+  --font-size-h2: 22px;
+  --font-size-h3: 18px;
+  --font-size-body: 14px;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 120ms;
+  --duration-normal: 200ms;
+  --duration-slow: 320ms;
+
+  /* Layout */
+  --container-max-width: 1240px;
+  --content-gutter: 24px;
+  --navbar-h: 61px;
+}
+
+[data-theme="dark"] {
+  --bg-default: #0b1220;
+  --bg-elevated: #111827;
+  --text-primary: #ffffff;
+  --text-secondary: #d1d5db;
+  --text-heading: #f9fafb;
+  --text-muted: #94a3b8;
+  --border-default: #2d3748;
+  --brand-500: #818cf8;
+  --brand-soft: color-mix(in srgb, var(--brand-500) 18%, #000000);
+
+  /* Chart contrast tokens */
+  --chart-axis: #9ca3af;
+  --chart-grid: rgba(255,255,255,.08);
+  --chart-label: #e5e7eb;
+  --tooltip-bg: #0f172a;
+  --tooltip-text: #f9fafb;
+  
+  /* Status pills */
+  --pill-bg: #1f2937;
+  --pill-text: #e5e7eb;
+  --pill-pos-bg: rgba(16,185,129,.16);
+  --pill-pos-text: #86efac;
+  --pill-neg-bg: rgba(239,68,68,.16);
+  --pill-neg-text: #fca5a5;
+  
+  /* Sidebar */
+  --sidebar-bg: #0f172a;
+  --sidebar-text: #e5e7eb;
+  --sidebar-border: #1f2a44;
+  --sidebar-item-bg: #0b1220;
+  --sidebar-item-hover: rgba(79,70,229,.15);
+  --sidebar-item-active: #4f46e5;
+  --sidebar-item-active-text: #ffffff;
+  
+  /* Form fields */
+  --field-bg: #0f172a;
+  --field-text: #e5e7eb;
+  --field-placeholder: #94a3b8;
+  --field-border: #2d3748;
+
+  /* darker charts for dark bg contrast if needed */
+  --chart-1: #a5b4fc;
+  --chart-2: #6ee7b7;
+  --chart-3: #fbbf24;
+  --chart-4: #f87171;
+  --chart-5: #67e8f9;
+  --chart-6: #c4b5fd;
+  --chart-7: #86efac;
+  --chart-8: #fb7185;
+
+  /* Reduce shadow opacity in dark */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.44);
+  --shadow-lg: 0 14px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Utility classes mapping to tokens (lightweight, no new framework) */
+.u-bg-default { background-color: var(--bg-default); }
+.u-bg-elevated { background-color: var(--bg-elevated); }
+.u-text-primary { color: var(--text-primary); }
+.u-text-secondary { color: var(--text-secondary); }
+.u-border-default { border-color: var(--border-default); }
+.u-bg-brand-soft { background-color: var(--brand-soft); }
+.u-bg-brand-solid { background-color: var(--brand-solid); }
+.u-text-brand { color: var(--brand-600); }
+.u-radius-md { border-radius: var(--radius-md); }
+.u-shadow-sm { box-shadow: var(--shadow-sm); }
+.u-shadow-md { box-shadow: var(--shadow-md); }
+.u-shadow-lg { box-shadow: var(--shadow-lg); }
+
+/* Composed surfaces */
+.surface {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--content-gutter);
+}
+
+/* Container using layout tokens */
+.container {
+  max-width: var(--container-max-width);
+  padding-left: var(--content-gutter);
+  padding-right: var(--content-gutter);
+  margin-left: auto;
+  margin-right: auto;
+}
+

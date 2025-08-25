@@ -10,7 +10,7 @@ const CustomLegend = ({payload}) => {
                         style={{ backgroundColor: entry.color}}
                     ></div>
 
-                    <span className="text-xs text-gray-700 font-medium">
+                    <span style={{fontSize: "12px", color: "var(--chart-label)", fontWeight: "500"}}>
                         {entry.value}
                     </span>
                 </div>

@@ -53,7 +53,8 @@ const Home = () => {
 
     return  (
         <DashboardLayout activeMenu="Dashboard">
-            <div className="my-5 mx-auto">
+            <div className="">
+                <h1 className="text-2xl mb-4" style={{fontSize:"var(--font-size-h1)", lineHeight:"var(--line-height-tight)"}}>Overview</h1>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <InfoCard
                         icon={<IoMdCard />}

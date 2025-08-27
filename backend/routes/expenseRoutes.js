@@ -7,7 +7,7 @@ const {
 } = require("../controllers/expenseController");
 const { protect } = require("../middleware/authMiddleware");
 
-const upload = require("../middleware/uploadMiddleware");
+const { upload } = require("../middleware/uploadMiddleware");
 const { analyzeReceiptController } = require("../controllers/expenseOcrController");
 
 const router = express.Router();

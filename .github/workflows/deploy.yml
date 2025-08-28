@@ -1,7 +1,11 @@
 name: Deploy to Fly.io
+
 on:
-  push:
-    branches: ["main"]
+  workflow_run:
+    workflows: ["Build & Push Docker Images"]   
+    types: [completed]
+    branches: [main]
+    
 concurrency:
   group: fly-deploy
   cancel-in-progress: true

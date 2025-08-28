@@ -34,13 +34,12 @@ exports.analyzeReceiptController = async (req, res) => {
       return res.status(500).json({ message: 'Azure Document Intelligence env not configured' });
     }
 
-    // 调用预置收据模型
     const analyzeUrl =
       `${AZURE_DI_ENDPOINT}/formrecognizer/documentModels/prebuilt-receipt:analyze?api-version=2023-07-31`;
 
-    const fileBuffer = fs.readFileSync(req.file.path);
+    // const fileBuffer = fs.readFileSync(req.file.path);
+    const fileBuffer = req.file.buffer;
 
-    // 1) 提交分析
     const analyzeResp = await axios.post(analyzeUrl, fileBuffer, {
       headers: {
         'Ocp-Apim-Subscription-Key': AZURE_DI_KEY,
@@ -60,7 +59,6 @@ exports.analyzeReceiptController = async (req, res) => {
     });
     }
 
-    // 2) 轮询结果
     const opLocation = analyzeResp.headers['operation-location'];
     if (!opLocation) return res.status(502).json({ message: 'Missing operation-location header' });
 
@@ -131,10 +129,5 @@ exports.analyzeReceiptController = async (req, res) => {
       responseStatus: err.response?.status,
       responseData: err.response?.data,
     });
-  } finally {
-    // 清理临时上传文件
-    if (req.file) {
-      try { fs.unlinkSync(req.file.path); } catch {}
-    }
-  }
+  } 
 };

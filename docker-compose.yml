@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks: [appnet]
+
+  api:
+    build:
+      context: ./backend
+    container_name: api
+    env_file:
+      - ./backend/.env    
+    environment:
+  
+      - MONGODB_URI=mongodb://mongo:27017/expensetracker
+
+      - FRONTEND_ORIGIN=http://localhost:5173
+      - PORT=8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    networks: [appnet]
+
+  web:
+    build:
+      context: ./frontend/expense-tracker
+      dockerfile: Dockerfile
+    container_name: web
+
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+    networks: [appnet]
+
+volumes:
+  mongo-data:
+
+networks:
+  appnet:

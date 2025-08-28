@@ -9,6 +9,9 @@
     "test:watch": "vitest",
     "coverage": "vitest --run --coverage"
   },
+  "engines": {
+    "node": ">=18"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

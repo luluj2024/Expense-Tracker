@@ -83,17 +83,14 @@ const AddExpenseForm = ({ onAddExpense }) => {
 
   const handleChange = (key, value) => setExpense((prev) => ({ ...prev, [key]: value }));
 
-  // 把 Azure 返回的日期转成 YYYY-MM-DD（<input type="date"> 需要）
   const toYMD = (s) => {
     if (!s) return "";
     const d = new Date(s);
-    if (Number.isNaN(d.getTime())) return s; // 已是 YYYY-MM-DD 的情况
+    if (Number.isNaN(d.getTime())) return s; 
     const mm = String(d.getMonth() + 1).padStart(2, "0");
     const dd = String(d.getDate()).padStart(2, "0");
     return `${d.getFullYear()}-${mm}-${dd}`;
   };
-
-  // 选择小票后上传到后端识别
 
 
   const handleReceiptSelect = async (e) => {
@@ -111,7 +108,7 @@ const AddExpenseForm = ({ onAddExpense }) => {
     const token = localStorage.getItem("token");
     if (!token) throw new Error("未登录：未找到 token");
 
-    const resp = await fetch("http://localhost:8000/api/v1/expense/receipt/analyze", {
+    const resp = await fetch("http://localhost:8080/api/v1/expense/receipt/analyze", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,    

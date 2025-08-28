@@ -54,5 +54,8 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/${{ steps.prep.outputs.owner_lc }}/expense-frontend:latest
             ${{ env.REGISTRY }}/${{ steps.prep.outputs.owner_lc }}/expense-frontend:${{ github.sha }}
+          build-args: |
+            API_URL=${{ vars.PROD_API_URL }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ steps.prep.outputs.owner_lc }}/expense-frontend:buildcache
           cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ steps.prep.outputs.owner_lc }}/expense-frontend:buildcache,mode=max
+

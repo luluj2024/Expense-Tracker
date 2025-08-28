@@ -1,0 +1,39 @@
+name: Deploy to Fly.io
+on:
+  push:
+    branches: ["main"]
+concurrency:
+  group: fly-deploy
+  cancel-in-progress: true
+permissions:
+  contents: read
+  packages: read
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compute lowercase owner
+        id: prep
+        run: echo "owner_lc=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_OUTPUT
+
+      - uses: superfly/flyctl-actions/setup-flyctl@v1
+
+      - name: Deploy API
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          flyctl deploy --config backend/fly.toml \
+            --image ${{ env.REGISTRY }}/${{ steps.prep.outputs.owner_lc }}/expense-backend:${{ github.sha }}
+
+      - name: Deploy Web
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          flyctl deploy --config frontend/expense-tracker/fly.toml \
+            --image ${{ env.REGISTRY }}/${{ steps.prep.outputs.owner_lc }}/expense-frontend:${{ github.sha }}

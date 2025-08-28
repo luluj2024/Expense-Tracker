@@ -5,7 +5,10 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 
-RUN if [ -f .env.docker ]; then cp .env.docker .env; fi
+# RUN if [ -f .env.docker ]; then cp .env.docker .env; fi
+ARG API_URL
+RUN echo "VITE_API_URL=$API_URL" > .env
+
 RUN npm run build
 
 

@@ -70,18 +70,34 @@ exports.loginUser = async (req, res) => {
 };
 
 //get user info
+// exports.getUserInfo = async (req, res) => {
+//     try{
+//         const user = await User.findById(req.user.id).select("-password");
+
+//         if(!user){
+//             return res.status(404).json({ message: "User not found" });
+//         }
+
+//         res.status(200).json(user);
+//     } catch(err){
+//         res
+//         .status(500)
+//         .json({ message: "Error get user info", error: err.message});
+//     }
+// };
+
 exports.getUserInfo = async (req, res) => {
-    try{
-        const user = await User.findById(req.user.id).select("-password");
+  try {
+    const user = await User.findById(req.user.id).lean();
+    if (!user) return res.status(404).json({ message: "User not found" });
 
-        if(!user){
-            return res.status(404).json({ message: "User not found" });
-        }
-
-        res.status(200).json(user);
-    } catch(err){
-        res
-        .status(500)
-        .json({ message: "Error get user info", error: err.message});
-    }
+    return res.json({
+      id: user._id,
+      fullName: user.fullName,
+      email: user.email,
+      profileImageUrl: user.profileImageUrl || null, // ← data URL
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching user", error: err.message });
+  }
 };

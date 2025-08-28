@@ -1,4 +1,4 @@
-export const BASE_URL = import.meta.env.VITE_API_URL;;
+export const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const API_PATHS = {
     AUTH: {
@@ -24,4 +24,20 @@ export const API_PATHS = {
     IMAGE:{
         UPLOAD_IMAGE: "/api/v1/auth/upload-image",
     },
+};
+
+export const normalizeBase = (url) => (url || "").replace(/\/+$/, "");
+
+export const buildImageUrl = (relativePath) => {
+  if (!relativePath) return "";
+  const base = normalizeBase(BASE_URL);       
+  const path = relativePath.startsWith("/") ? relativePath : `/${relativePath}`;
+  return `${base}${path}`;
+};
+
+
+export const sanitizeImagePath = (value) => {
+  if (!value) return "";
+  const m = String(value).match(/(\/uploads\/.*)$/);
+  return m ? m[1] : value;
 };

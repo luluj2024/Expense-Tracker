@@ -4,10 +4,12 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import CharAvatar from "../Cards/CharAvatar";
+import { buildImageUrl, sanitizeImagePath } from "../../utils/apiPaths";
 
 const SideMenu = ({activeMenu}) => {
     const { user, clearUser } = useContext(UserContext);
     const navigate = useNavigate();
+    const isDataUrl = (s) => typeof s === "string" && s.startsWith("data:");
 
     const handleClick = (route) => {
         if (route === "logout"){
@@ -29,7 +31,11 @@ const SideMenu = ({activeMenu}) => {
             <div className="flex flex-col items-center justify-center gap-s mt-3 mb-7">
                 {user?.profileImageUrl ? (
                     <img
-                        src={user?.profileImageUrl || ""}
+                        src={
+                            isDataUrl(user.profileImageUrl)
+                            ? user.profileImageUrl
+                            : buildImageUrl(sanitizeImagePath(user.profileImageUrl))
+                        }
                         alt="Profile Image"
                         className="w-20 h-20 bg-slate-400 rounded-full"
                     />) : (

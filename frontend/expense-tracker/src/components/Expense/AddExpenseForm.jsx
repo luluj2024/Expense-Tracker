@@ -108,7 +108,7 @@ const AddExpenseForm = ({ onAddExpense }) => {
     const token = localStorage.getItem("token");
     if (!token) throw new Error("未登录：未找到 token");
 
-    const resp = await fetch("http://localhost:8080/api/v1/expense/receipt/analyze", {
+    const resp = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/expense/receipt/analyze`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,    
